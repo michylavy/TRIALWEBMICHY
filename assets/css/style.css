@@ -1,0 +1,1971 @@
+/* ===================================================
+   PORTFOLIO - CLAYMORPHISM STYLESHEET
+   =================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-body: #ffffff;
+  --sidebar-bg: #c9ded9;        /* Pastel Mint */
+  --active-bg: #f5f1e7;         /* Soft Cream */
+  --text-color: #2e433b;        /* Dark Muted Green */
+  --text-muted: #4e685f;        /* Inactive Muted Green */
+  
+  /* Claymorphism Shadows - Sidebar */
+  --sidebar-shadow-outer: 20px 24px 45px rgba(54, 77, 70, 0.13),
+                          -10px -10px 30px rgba(255, 255, 255, 0.85);
+  --sidebar-shadow-inner: inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+                          inset -3px -3px 8px rgba(160, 188, 180, 0.4);
+
+  /* Claymorphism Shadows - Active Pill (Timbul) */
+  --active-shadow-outer: 6px 10px 20px rgba(50, 75, 68, 0.14),
+                         -3px -3px 8px rgba(255, 255, 255, 0.9);
+  --active-shadow-inner: inset 2px 2px 4px rgba(255, 255, 255, 0.95),
+                         inset -2px -2px 5px rgba(188, 178, 163, 0.28);
+
+  /* Hover Shadow */
+  --hover-bg: rgba(245, 241, 231, 0.5);
+
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --sidebar-radius: 42px;
+  --item-radius: 24px;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-body);
+  color: var(--text-color);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible Keyboard Focus Visible Rings (WCAG 2.1 AA) */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid rgba(46, 67, 59, 0.45);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+.slider-btn:focus-visible,
+.whatsapp-float-btn:focus-visible,
+.modal-close-btn:focus-visible {
+  border-radius: 50%;
+}
+
+.card-img-wrap:focus-visible {
+  outline: 3px solid rgba(46, 67, 59, 0.45);
+  outline-offset: 4px;
+  border-radius: 18px;
+}
+
+/* Accessibility: Support for Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===================================================
+   SIDEBAR HEADER (VERTICAL NAVIGATION)
+   =================================================== */
+
+header.sidebar {
+  position: fixed;
+  top: 28px;
+  left: 28px;
+  bottom: 28px;
+  width: 220px;
+  background-color: var(--sidebar-bg);
+  border-radius: var(--sidebar-radius);
+  padding: 38px 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--sidebar-shadow-outer), var(--sidebar-shadow-inner);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  width: 100%;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+/* Navigation Links */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-radius: var(--item-radius);
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.05rem;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: transparent;
+}
+
+/* Icon Styling */
+.nav-link i {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+  color: var(--text-color);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.nav-link span {
+  letter-spacing: -0.01em;
+}
+
+/* Hover State (Non-active) */
+.nav-link:hover:not(.active) {
+  background-color: var(--hover-bg);
+  transform: translateX(3px);
+}
+
+.nav-link:hover:not(.active) i {
+  transform: scale(1.1);
+}
+
+/* Active State - Clay Effect (Timbul) */
+.nav-link.active {
+  background-color: var(--active-bg);
+  color: var(--text-color);
+  font-weight: 700;
+  box-shadow: var(--active-shadow-outer), var(--active-shadow-inner);
+  transform: translateY(-1px);
+}
+
+.nav-link.active i {
+  color: var(--text-color);
+  transform: scale(1.05);
+}
+
+.nav-link:active {
+  transform: scale(0.97);
+}
+
+/* ===================================================
+   MAIN LAYOUT CONTAINER
+   =================================================== */
+
+.main-content {
+  margin-left: 276px;
+  width: calc(100% - 276px);
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================================================
+   SECTION #HOME (HERO) - 3-LAYER ARCHITECTURE
+   =================================================== */
+
+.home-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bg-body);
+}
+
+/* ---------------------------------------------------
+   LAYER 1: Background & Dekorasi Soft Claymorphism
+   --------------------------------------------------- */
+.home-layer-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Soft Decorative Ambient Circles */
+.clay-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.clay-blob-1 {
+  width: 460px;
+  height: 460px;
+  top: -80px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(201, 222, 217, 0.4) 0%, rgba(201, 222, 217, 0.05) 65%, transparent 100%);
+  filter: blur(40px);
+}
+
+.clay-blob-2 {
+  width: 380px;
+  height: 380px;
+  top: 12%;
+  left: 3%;
+  background: radial-gradient(circle, rgba(245, 241, 231, 0.75) 0%, rgba(245, 241, 231, 0.1) 70%, transparent 100%);
+  filter: blur(35px);
+}
+
+.clay-blob-3 {
+  width: 550px;
+  height: 550px;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(201, 222, 217, 0.3) 0%, rgba(245, 241, 231, 0.2) 55%, transparent 75%);
+  filter: blur(55px);
+}
+
+/* ---------------------------------------------------
+   LAYER 2: Karakter Utama (Bawah Tengah)
+   --------------------------------------------------- */
+.home-layer-character {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  height: 84vh;
+  max-height: 820px;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.character-img {
+  height: 100%;
+  width: auto;
+  max-width: 90vw;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  mix-blend-mode: multiply;
+  transition: opacity 0.15s ease-out;
+}
+
+/* ---------------------------------------------------
+   LAYER 3: Nama Portfolio (Clay Pill Timbul dengan Floating)
+   --------------------------------------------------- */
+.home-layer-title {
+  position: absolute;
+  bottom: clamp(65px, 15vh, 135px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: auto;
+  text-align: center;
+}
+
+/* Claymorphism Pill Badge */
+.name-pill {
+  background-color: var(--sidebar-bg); /* #c9ded9 pastel mint */
+  padding: clamp(14px, 2vh, 20px) clamp(34px, 4.5vw, 62px);
+  border-radius: 999px;
+  box-shadow: 
+    10px 18px 36px rgba(46, 67, 59, 0.16),
+    -5px -5px 16px rgba(255, 255, 255, 0.9),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 0.8),
+    inset -2.5px -2.5px 6px rgba(158, 186, 178, 0.38);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: subtleFloat 4.5s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.name-pill:hover {
+  box-shadow: 
+    12px 22px 42px rgba(46, 67, 59, 0.2),
+    -6px -6px 18px rgba(255, 255, 255, 0.95),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 0.9),
+    inset -2.5px -2.5px 6px rgba(158, 186, 178, 0.3);
+}
+
+.portfolio-name {
+  color: var(--text-color); /* #2e433b dark muted green */
+  font-size: clamp(1.4rem, 2.7vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Subtle Floating Animation */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* ===================================================
+   GENERIC PORTFOLIO SECTIONS (Ready for Next Steps)
+   =================================================== */
+
+.portfolio-section {
+  min-height: 80vh;
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ===================================================
+   SECTION #ABOUT - MINIMAL, CLEAN & PASTEL
+   =================================================== */
+
+.about-section {
+  min-height: 100vh;
+  padding: 90px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--bg-body);
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(40px, 5vw, 68px);
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* SISI KIRI: GAMBAR LANYARD (INTERAKTIF DRAGGABLE) */
+.about-left {
+  flex: 0 0 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.lanyard-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: top center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none; /* Cegah gesture scroll default saat touch pada lanyard */
+  will-change: transform;
+}
+
+.lanyard-wrapper:active,
+.lanyard-wrapper.is-dragging {
+  cursor: grabbing;
+}
+
+body.lanyard-is-dragging,
+body.lanyard-is-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+.lanyard-img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  max-height: 590px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none; /* Cegah native browser ghost image drag */
+  filter: drop-shadow(8px 18px 25px rgba(54, 77, 70, 0.12));
+}
+
+/* SISI KANAN: INFORMASI ABOUT */
+.about-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-header {
+  margin-bottom: 26px;
+}
+
+.about-pill-badge {
+  display: inline-block;
+  background-color: var(--sidebar-bg); /* pastel mint #c9ded9 */
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  box-shadow: 
+    2px 4px 10px rgba(46, 67, 59, 0.06),
+    -1px -1px 4px rgba(255, 255, 255, 0.9);
+}
+
+.about-heading {
+  font-size: clamp(1.85rem, 2.7vw, 2.45rem);
+  font-weight: 800;
+  color: var(--text-color);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  min-height: 1.25em;
+}
+
+/* Cursor berkedip setelah animasi typing selesai */
+.typing-cursor {
+  display: inline-block;
+  margin-left: 3px;
+  color: var(--text-color);
+  font-weight: 300;
+  animation: blinkCursor 0.85s step-start infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+
+.about-intro {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 620px;
+}
+
+/* AREA INFORMASI: 2-COLUMN MINIMAL PASTEL LAYOUT */
+.about-info-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+}
+
+.about-card {
+  background: rgba(245, 241, 231, 0.45); /* Soft pastel cream */
+  border-radius: 20px;
+  padding: 22px 24px;
+  border: 1px solid rgba(201, 222, 217, 0.5);
+  box-shadow: 
+    4px 8px 22px rgba(46, 67, 59, 0.04),
+    -2px -2px 8px rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-card {
+  height: 100%;
+}
+
+.about-side-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-title-wrap {
+  margin-bottom: 12px;
+}
+
+.card-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-color);
+  background: var(--sidebar-bg); /* pastel mint */
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+/* EXPERIENCE LIST */
+.experience-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+}
+
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  position: relative;
+  padding-left: 14px;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+}
+
+.exp-role {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  line-height: 1.35;
+}
+
+.exp-company {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* EDUCATION */
+.edu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.edu-degree {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.edu-campus {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* TOOLS CHIPS */
+.tools-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tool-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #ffffff;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 222, 217, 0.65);
+  box-shadow: 1px 2px 4px rgba(46, 67, 59, 0.04);
+}
+
+/* CONTACT DETAILS */
+.contact-details-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.contact-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.86rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.contact-entry:hover {
+  color: #1a6048;
+}
+
+.contact-entry i {
+  color: var(--text-muted);
+  width: 16px;
+  text-align: center;
+  font-size: 0.86rem;
+}
+
+/* ===================================================
+   SECTION #PROJECT - CLAYMORPHISM HORIZONTAL SLIDER
+   =================================================== */
+
+.project-section {
+  min-height: 100vh;
+  padding: 90px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--bg-body);
+}
+
+.project-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER SECTION: Judul & Controls */
+.project-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.project-header-text {
+  flex: 1;
+}
+
+.project-pill-badge {
+  display: inline-block;
+  background-color: var(--sidebar-bg); /* pastel mint #c9ded9 */
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  box-shadow: 
+    2px 4px 10px rgba(46, 67, 59, 0.06),
+    -1px -1px 4px rgba(255, 255, 255, 0.9);
+}
+
+.project-heading {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.project-subheading {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  max-width: 580px;
+}
+
+/* SLIDER CONTROLS (Tombol Prev / Next) */
+.slider-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slider-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: var(--active-bg); /* Soft cream */
+  color: var(--text-color);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 
+    4px 6px 14px rgba(46, 67, 59, 0.08),
+    -2px -2px 6px rgba(255, 255, 255, 0.95),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+}
+
+.slider-btn:hover {
+  transform: translateY(-2px);
+  background-color: var(--sidebar-bg);
+  box-shadow: 
+    5px 8px 18px rgba(46, 67, 59, 0.12),
+    -3px -3px 8px rgba(255, 255, 255, 1);
+}
+
+.slider-btn:active {
+  transform: scale(0.94);
+}
+
+/* HORIZONTAL SLIDER CONTAINER DENGAN CSS SCROLL-SNAP */
+.project-slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 12px 6px 36px 6px;
+  /* Sembunyikan scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* PROJECT CARDS (CLAYMORPHISM) */
+.project-card {
+  /* Desktop menampilkan sekitar 3 card */
+  flex: 0 0 calc((100% - 48px) / 3);
+  scroll-snap-align: start;
+  background: #fbfdfc;
+  border-radius: 28px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    8px 16px 32px rgba(46, 67, 59, 0.07),
+    -5px -5px 14px rgba(255, 255, 255, 0.95),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 5px rgba(201, 222, 217, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  user-select: none;
+}
+
+/* Hover membuat card sedikit naik */
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    12px 22px 38px rgba(46, 67, 59, 0.12),
+    -6px -6px 16px rgba(255, 255, 255, 1),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 5px rgba(201, 222, 217, 0.2);
+}
+
+/* NOMOR BESAR */
+.card-num-badge {
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: rgba(46, 67, 59, 0.13);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .card-num-badge {
+  color: rgba(46, 67, 59, 0.25);
+}
+
+/* AREA GAMBAR PROJECT */
+.card-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--active-bg);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 18px;
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.04);
+}
+
+/* INFO CARD */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-category {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1.35;
+}
+
+/* Cursor Zoom pada Gambar Card */
+.card-img-wrap {
+  cursor: zoom-in;
+}
+
+/* ===================================================
+   PROJECT IMAGE PREVIEW MODAL (POPUP FULLSCREEN)
+   =================================================== */
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.3s ease;
+}
+
+.project-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Overlay Hitam Transparan + Backdrop Blur Ringan */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(14, 24, 20, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+/* Container Modal dengan Animasi Scale Halus */
+.modal-container {
+  position: relative;
+  z-index: 2;
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: auto;
+}
+
+.project-modal.is-open .modal-container {
+  transform: scale(1);
+}
+
+/* Tombol Close X di Kanan Atas */
+.modal-close-btn {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--active-bg); /* Soft cream */
+  color: var(--text-color);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.25),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  user-select: none;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  background-color: var(--sidebar-bg); /* pastel mint */
+}
+
+.modal-close-btn:active {
+  transform: scale(0.95);
+}
+
+/* Konten Modal */
+.modal-content {
+  background: #fbfdfc;
+  border-radius: 26px;
+  padding: 14px 14px 18px 14px;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+}
+
+/* Gambar Project Lebih Besar */
+.modal-img {
+  width: auto;
+  max-width: 82vw;
+  max-height: 68vh;
+  object-fit: contain;
+  border-radius: 18px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Keterangan Modal */
+.modal-caption {
+  margin-top: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.modal-category {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-color);
+  letter-spacing: -0.01em;
+}
+
+
+/* ===================================================
+   SECTION #CONTACT - CLAYMORPHISM ENVELOPE CTA
+   =================================================== */
+
+.contact-section {
+  min-height: 100vh;
+  padding: 100px 48px 80px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--bg-body);
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* HEADER CONTACT */
+.contact-header {
+  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-pill-badge {
+  display: inline-block;
+  background-color: var(--sidebar-bg); /* pastel mint #c9ded9 */
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  box-shadow: 
+    2px 4px 10px rgba(46, 67, 59, 0.06),
+    -1px -1px 4px rgba(255, 255, 255, 0.9);
+}
+
+.contact-heading {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.contact-subheading {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+/* ENVELOPE SCENE & 3D PERSPECTIVE */
+.envelope-scene {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 110px; /* Ruang luas agar surat leluasa naik tanpa menabrak header */
+  margin-bottom: 36px;
+  perspective: 1000px;
+}
+
+/* WRAPPER AMPLOP */
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  height: 350px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.envelope-wrapper:hover,
+.envelope-wrapper.is-open {
+  transform: translateY(-4px);
+}
+
+/* 1. BAGIAN BELAKANG AMPLOP (BACK WALL & OPEN FLAP) */
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #d3e7e1 0%, #bdd8cf 100%);
+  border-radius: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    16px 24px 45px rgba(46, 67, 59, 0.12),
+    -10px -10px 28px rgba(255, 255, 255, 0.95),
+    inset 0 6px 14px rgba(46, 67, 59, 0.08),
+    inset 0 -6px 12px rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+
+/* Flap atas amplop yang terbuka di belakang surat */
+.envelope-back::before {
+  content: '';
+  position: absolute;
+  top: -55px;
+  left: 12px;
+  right: 12px;
+  height: 95px;
+  background: linear-gradient(180deg, #cde4de 0%, #bdd9d0 100%);
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+  border-radius: 16px 16px 0 0;
+  z-index: 1;
+  opacity: 0.95;
+}
+
+/* 2. SURAT DI DALAM AMPLOP (LETTER CARD) */
+.envelope-letter {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 18px;
+  height: 300px;
+  background: linear-gradient(180deg, #ffffff 0%, #faf8f5 100%);
+  border-radius: 20px;
+  padding: 24px 32px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 
+    0 10px 26px rgba(46, 67, 59, 0.09),
+    0 2px 6px rgba(46, 67, 59, 0.04),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+  border: 1.5px solid rgba(215, 230, 225, 0.85);
+  
+  /* Kondisi normal: surat sebagian berada di dalam amplop */
+  transform: translateY(0);
+  /* Animasi playful elastic spring */
+  transition: transform 0.65s cubic-bezier(0.34, 1.25, 0.64, 1), box-shadow 0.65s ease;
+}
+
+/* Saat hover: surat naik perlahan dan anggun */
+.envelope-wrapper:hover .envelope-letter,
+.envelope-wrapper.is-open .envelope-letter {
+  transform: translateY(-142px);
+  box-shadow: 
+    0 26px 52px rgba(46, 67, 59, 0.16),
+    0 4px 14px rgba(46, 67, 59, 0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+/* ISI SURAT: BADGE, TITLE, PARAGRAF, BUTTON */
+.letter-top-accent {
+  margin-bottom: 10px;
+}
+
+.letter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-color);
+  background: rgba(201, 222, 217, 0.4);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.letter-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.letter-text {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 440px;
+  margin-bottom: 22px;
+}
+
+/* BUTTON SURAT (MAILTO LINK) */
+.letter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #c9ded9 0%, #b2d4cb 100%);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 13px 28px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    4px 6px 16px rgba(46, 67, 59, 0.14),
+    -2px -2px 6px rgba(255, 255, 255, 0.9),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.85);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.letter-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: linear-gradient(135deg, #bfe0d6 0%, #a5cdbf 100%);
+  box-shadow: 
+    6px 10px 22px rgba(46, 67, 59, 0.18),
+    -3px -3px 8px rgba(255, 255, 255, 1);
+  color: var(--text-color);
+}
+
+.letter-btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 
+    2px 3px 8px rgba(46, 67, 59, 0.12),
+    inset 1px 1px 2px rgba(46, 67, 59, 0.1);
+}
+
+.letter-btn i {
+  font-size: 0.95rem;
+  transition: transform 0.25s ease;
+}
+
+.letter-btn:hover i {
+  transform: translateX(3px) rotate(-10deg);
+}
+
+/* 3. POCKET / BAGIAN DEPAN AMPLOP */
+.envelope-pocket {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 230px;
+  z-index: 3;
+  pointer-events: none; /* Izinkan klik tembus ke surat & button */
+}
+
+/* Badan pocket dengan bentuk V-notch menggunakan pure CSS clip-path */
+.envelope-pocket::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, #dcf0ea 0%, #c4ded6 100%);
+  clip-path: polygon(0% 0%, 50% 48%, 100% 0%, 100% 100%, 0% 100%);
+  border-radius: 0 0 28px 28px;
+  filter: drop-shadow(0 -5px 12px rgba(46, 67, 59, 0.1));
+}
+
+/* Lipatan segitiga aksen bawah khas amplop fisik */
+.envelope-pocket::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0% 100%, 50% 50%, 100% 100%);
+  background: linear-gradient(0deg, rgba(188, 218, 210, 0.35) 0%, transparent 100%);
+  border-radius: 0 0 28px 28px;
+  pointer-events: none;
+}
+
+/* SEAL / SEGEL WAX CLAY BULAT DENGAN IKON HEART */
+.envelope-seal {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fce8e6 0%, #f6cfcc 100%); /* pastel rose clay */
+  color: #cf5c64;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 
+    3px 5px 14px rgba(46, 67, 59, 0.15),
+    -2px -2px 6px rgba(255, 255, 255, 0.95),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95),
+    inset -1px -1px 3px rgba(180, 100, 100, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  z-index: 5;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.envelope-wrapper:hover .envelope-seal,
+.envelope-wrapper.is-open .envelope-seal {
+  transform: translate(-50%, -50%) scale(1.12) rotate(-8deg);
+}
+
+/* INFORMASI KONTAK TAMBAHAN */
+.contact-footer-info {
+  margin-top: 24px;
+}
+
+.contact-direct-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.direct-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background-color: var(--active-bg);
+  box-shadow: 
+    2px 4px 10px rgba(46, 67, 59, 0.06),
+    -1px -1px 4px rgba(255, 255, 255, 0.9);
+  transition: all 0.25s ease;
+}
+
+.direct-link:hover {
+  color: var(--text-color);
+  background-color: var(--sidebar-bg);
+  transform: translateY(-2px);
+}
+
+.direct-divider {
+  color: rgba(46, 67, 59, 0.3);
+}
+
+.direct-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+/* FOOTER WEBSITE */
+.portfolio-footer {
+  width: 100%;
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(201, 222, 217, 0.4);
+  background-color: var(--bg-body);
+}
+
+/* ===================================================
+   FLOATING WHATSAPP BUTTON (CLAYMORPHISM)
+   =================================================== */
+
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #34d884 0%, #20b86a 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.85rem;
+  z-index: 1100;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    6px 10px 22px rgba(32, 160, 95, 0.32),
+    -3px -3px 9px rgba(255, 255, 255, 0.85),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 5px rgba(16, 110, 60, 0.25);
+  transition: transform 0.35s cubic-bezier(0.34, 1.25, 0.64, 1), box-shadow 0.35s ease;
+  user-select: none;
+}
+
+.whatsapp-float-btn i {
+  transition: transform 0.3s ease;
+}
+
+/* Hover: sedikit naik dan berubah shadow */
+.whatsapp-float-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    8px 16px 28px rgba(32, 160, 95, 0.42),
+    -4px -4px 12px rgba(255, 255, 255, 0.95),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.7),
+    inset -2px -2px 5px rgba(16, 110, 60, 0.2);
+  color: #ffffff;
+}
+
+.whatsapp-float-btn:hover i {
+  transform: scale(1.08) rotate(8deg);
+}
+
+.whatsapp-float-btn:active {
+  transform: translateY(-1px) scale(0.96);
+  box-shadow: 
+    3px 5px 12px rgba(32, 160, 95, 0.28),
+    inset 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ===================================================
+   RESPONSIVE DESIGN SYSTEM (BREAKPOINTS: 1024px & 768px)
+   =================================================== */
+
+/* Prevent horizontal overflow across the whole layout */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.main-content {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Pastikan semua gambar tidak pecah / stretch */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===================================================
+   1. TABLET BREAKPOINT (max-width: 1024px)
+   =================================================== */
+@media (max-width: 1024px) {
+  /* Sidebar: Tetap Vertikal di Kiri, lebih ramping dan hemat ruang */
+  header.sidebar {
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    width: 86px;
+    border-radius: 36px;
+    padding: 24px 8px;
+  }
+
+  .nav-list {
+    gap: 12px;
+  }
+
+  .nav-link {
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 4px;
+    border-radius: 18px;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .nav-link i {
+    font-size: 1.25rem;
+  }
+
+  .nav-link span {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  /* Main Container Tablet */
+  .main-content {
+    margin-left: 120px;
+    width: calc(100% - 120px);
+  }
+
+  /* Section #home Tablet */
+  .home-section {
+    padding: 40px 24px;
+  }
+
+  .home-layer-character {
+    height: 72vh;
+    min-height: 380px;
+  }
+
+  .portfolio-name {
+    font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  }
+
+  /* Section #about Tablet: Ukuran card dan typography diperkecil, konten tetap mudah dibaca */
+  .about-section {
+    padding: 70px 32px;
+    min-height: auto;
+  }
+
+  .about-container {
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  .about-left {
+    flex: 0 0 210px;
+  }
+
+  .lanyard-img {
+    max-height: 400px;
+    max-width: 210px;
+  }
+
+  .about-heading {
+    font-size: 1.85rem;
+  }
+
+  .about-intro {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .about-info-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .about-card {
+    padding: 18px 20px;
+    border-radius: 18px;
+  }
+
+  .about-title {
+    font-size: 0.82rem;
+  }
+
+  .about-list li {
+    font-size: 0.86rem;
+  }
+
+  /* Section #project Tablet: Menampilkan sekitar 2 card */
+  .project-section {
+    padding: 70px 32px;
+    min-height: auto;
+  }
+
+  .project-header {
+    margin-bottom: 24px;
+  }
+
+  .project-heading {
+    font-size: 2.1rem;
+  }
+
+  .project-card {
+    flex: 0 0 calc((100% - 24px) / 2);
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .card-name {
+    font-size: 1.05rem;
+  }
+
+  /* Section #contact Tablet */
+  .contact-section {
+    padding: 80px 32px 60px 32px;
+    min-height: auto;
+  }
+
+  .contact-header {
+    margin-bottom: 50px;
+  }
+
+  .envelope-scene {
+    padding-top: 85px;
+  }
+
+  .envelope-wrapper {
+    max-width: 520px;
+    height: 330px;
+  }
+
+  .envelope-letter {
+    height: 290px;
+    padding: 20px 24px;
+  }
+
+  .letter-title {
+    font-size: 1.3rem;
+  }
+
+  .letter-text {
+    font-size: 0.88rem;
+  }
+
+  /* Floating WhatsApp Tablet */
+  .whatsapp-float-btn {
+    bottom: 28px;
+    right: 28px;
+    width: 56px;
+    height: 56px;
+    font-size: 1.7rem;
+  }
+}
+
+/* Jika ruang tablet sempit (<= 900px), sembunyikan lanyard dekoratif agar konten leluasa */
+@media (max-width: 900px) and (min-width: 769px) {
+  .about-left {
+    display: none;
+  }
+}
+
+/* ===================================================
+   2. MOBILE BREAKPOINT (max-width: 768px)
+   =================================================== */
+@media (max-width: 768px) {
+  /* Ubah sidebar menjadi floating bottom navigation */
+  header.sidebar {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    height: auto;
+    border-radius: 28px;
+    padding: 8px 12px;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(54, 77, 70, 0.16), -5px -5px 15px rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+  }
+
+  .sidebar-nav {
+    width: 100%;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .nav-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Menu tampil icon + label kecil */
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 7px 6px;
+    width: 100%;
+    border-radius: 16px;
+    text-decoration: none;
+  }
+
+  .nav-link i {
+    font-size: 1.15rem;
+  }
+
+  .nav-link span {
+    display: block; /* Label kecil di bawah icon */
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* Tambahkan ruang bawah pada main agar content tidak tertutup navigation */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding-bottom: 96px;
+  }
+
+  /* Section #home Mobile: Hero title diperkecil & karakter tetap centered */
+  .home-section {
+    min-height: calc(100vh - 96px);
+    padding: 20px 16px 36px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .home-layer-character {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+    min-height: 320px;
+    max-height: 480px;
+    width: 100%;
+  }
+
+  .character-img {
+    max-width: 85%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .home-layer-title {
+    bottom: clamp(20px, 5vh, 44px);
+    width: 90%;
+    max-width: 320px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .name-pill {
+    padding: 10px 18px;
+    border-radius: 999px;
+  }
+
+  .portfolio-name {
+    font-size: clamp(1.1rem, 4.5vw, 1.35rem);
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  /* Section #about Mobile: Lanyard dekoratif disembunyikan agar konten mudah dibaca */
+  .about-left {
+    display: none;
+  }
+
+  .about-section {
+    padding: 50px 20px 40px 20px;
+    min-height: auto;
+  }
+
+  .about-container {
+    width: 100%;
+  }
+
+  .about-heading {
+    font-size: 1.65rem;
+    margin-bottom: 12px;
+  }
+
+  .about-intro {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .about-info-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .about-card {
+    padding: 18px 20px;
+    border-radius: 20px;
+  }
+
+  /* Section #project Mobile: Project slider menampilkan sekitar 85% dari 1 card, tombol tetap mudah ditekan */
+  .project-section {
+    padding: 50px 20px 50px 20px;
+    min-height: auto;
+  }
+
+  .project-header {
+    margin-bottom: 20px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .project-heading {
+    font-size: 1.85rem;
+  }
+
+  .project-subheading {
+    display: none;
+  }
+
+  .project-slider {
+    gap: 16px;
+    padding-bottom: 20px;
+  }
+
+  .project-card {
+    /* Mobile menampilkan sekitar 85% dari 1 card */
+    flex: 0 0 85%;
+    max-width: 85%;
+    padding: 18px;
+    border-radius: 22px;
+    scroll-snap-align: center;
+  }
+
+  /* Tombol slider tetap mudah ditekan */
+  .slider-controls {
+    gap: 10px;
+  }
+
+  .slider-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  /* Modal preview di mobile */
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+    position: fixed;
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  }
+
+  .modal-content {
+    border-radius: 20px;
+    padding: 10px 10px 14px 10px;
+    max-width: 92vw;
+  }
+
+  .modal-img {
+    max-width: 86vw;
+    max-height: 55vh;
+    border-radius: 14px;
+  }
+
+  .modal-title {
+    font-size: 1.05rem;
+  }
+
+  /* Section #contact Mobile: Amplop Contact diperkecil */
+  .contact-section {
+    padding: 50px 16px 40px 16px;
+    min-height: auto;
+  }
+
+  .contact-header {
+    margin-bottom: 36px;
+  }
+
+  .contact-heading {
+    font-size: 1.85rem;
+  }
+
+  .contact-subheading {
+    font-size: 0.88rem;
+    padding: 0 8px;
+  }
+
+  .envelope-scene {
+    padding-top: 75px;
+    margin-bottom: 24px;
+  }
+
+  .envelope-wrapper {
+    width: 100%;
+    max-width: 92vw;
+    height: 310px;
+  }
+
+  .envelope-back {
+    border-radius: 22px;
+  }
+
+  .envelope-back::before {
+    top: -45px;
+    height: 75px;
+  }
+
+  .envelope-letter {
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    height: 270px;
+    padding: 16px 14px 20px 14px;
+    border-radius: 16px;
+  }
+
+  .letter-top-accent {
+    margin-bottom: 6px;
+  }
+
+  .letter-badge {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+  }
+
+  .letter-title {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .letter-text {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+
+  .letter-btn {
+    padding: 10px 20px;
+    font-size: 0.84rem;
+    gap: 8px;
+  }
+
+  .envelope-wrapper:hover .envelope-letter,
+  .envelope-wrapper.is-open .envelope-letter {
+    transform: translateY(-112px);
+  }
+
+  .envelope-pocket {
+    height: 200px;
+  }
+
+  .envelope-pocket::before,
+  .envelope-pocket::after {
+    border-radius: 0 0 22px 22px;
+  }
+
+  .envelope-seal {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+
+  .contact-direct-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .direct-divider {
+    display: none;
+  }
+
+  /* Floating WhatsApp berada di atas bottom nav */
+  .whatsapp-float-btn {
+    bottom: 92px; /* Di atas floating bottom bar (bottom: 16px + bar height ~60px) */
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.6rem;
+  }
+}
+
+
